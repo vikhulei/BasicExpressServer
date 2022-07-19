@@ -2,7 +2,7 @@ const express = require ("express");
 const app = express();
 const port = 4000;
 const cors = require("cors");
-let fromServer = "";
+let exchangedData = "";
 
 app.use(express.json());
 app.use(cors());
@@ -11,12 +11,12 @@ app.use(express.static("public"));
 app.use(express.json());
 
 app.get("/info", cors(), async(req, res) => {
-    res.status(200).json({info: fromServer})
+    res.status(200).json({info: exchangedData})
 });
 
 app.post("/", (req, res) => {
     const {parcel} = req.body;
-    fromServer = parcel;
+    exchangedData = parcel;
     if(!parcel) {
         res.status(400).send({status: "failed"})
     }
