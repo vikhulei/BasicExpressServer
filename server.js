@@ -1,14 +1,13 @@
 const express = require ("express");
+const cors = require("cors");
 const app = express();
 const port = 4000;
-const cors = require("cors");
 let exchangedData = "";
 
 app.use(express.json());
 app.use(cors());
 
 app.use(express.static("public"));
-app.use(express.json());
 
 app.get("/info", cors(), async(req, res) => {
     res.status(200).json({info: exchangedData})
